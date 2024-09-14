@@ -2,8 +2,7 @@ package br.com.teste.servico;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
-
+import jakarta.ejb.Stateless;
 @Stateless
 public class AgendamentoEmailServico {
     

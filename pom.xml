@@ -4,18 +4,18 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.teste</groupId>
 	<artifactId>agendamentoemail</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>Agendamento de e-mails</name>
 	<description>Projeto teste em EJB </description>
 
 	<properties>
-		<failOnMissingWebXml>false</failOnMissingWebXml>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<jakarta.jakartaee-api.version>8.0.0</jakarta.jakartaee-api.version>
-		<maven.compiler.source>14</maven.compiler.source>
-		<maven.compiler.target>14</maven.compiler.target>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+		<failOnMissingWebXml>false</failOnMissingWebXml>
+		<jakarta.jakartaee-api.version>9.1.0</jakarta.jakartaee-api.version>
 	</properties>
 
 	<dependencies>
@@ -32,12 +32,33 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
+				<version>3.10.1</version>
+				<configuration>
+					<release>17</release>
+					<compilerArgs>
+						<arg>--add-opens</arg>
+						<arg>java.base/java.lang=ALL-UNNAMED</arg>
+					</compilerArgs>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.3.2</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<packagingExcludes>
+						WEB-INF/lib/weld-*.jar,
+						WEB-INF/lib/cdi-api-*.jar,
+						WEB-INF/lib/jakarta.transaction-api-*.jar,
+						WEB-INF/lib/jakarta.activation-api-*.jar
+					</packagingExcludes>
+					<archive>
+						<manifestEntries>
+							<Add-Opens>java.base/java.lang</Add-Opens>
+						</manifestEntries>
+					</archive>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
