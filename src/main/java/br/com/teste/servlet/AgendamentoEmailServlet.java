@@ -18,11 +18,6 @@ public class AgendamentoEmailServlet extends HttpServlet{
     @Inject
     private AgendamentoEmailServico servico;
 
-    // @Override
-    //  protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-    //  }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter pw = resp.getWriter();
