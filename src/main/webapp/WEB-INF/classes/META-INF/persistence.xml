@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xml>
 <persistence>
-    <persistence-unit name="AgendamentoEmailsDS">
-        <jta-data-source>java:/AgendamentoEmailDS</jta-data-source>
+    <persistence-unit name="MySqlDS">
+        <jta-data-source>java:/MySqlDS</jta-data-source>
     </persistence-unit>
 </persistence>
