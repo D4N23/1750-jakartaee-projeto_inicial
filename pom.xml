@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.teste</groupId>
 	<artifactId>agendamentoemail</artifactId>
-	<version>0.0.3-SNAPSHOT</version>
+	<version>0.0.5</version>
 	<packaging>war</packaging>
 	<name>Agendamento de e-mails</name>
 	<description>Projeto teste em EJB </description>
@@ -22,6 +22,12 @@
 			<groupId>jakarta.platform</groupId>
 			<artifactId>jakarta.jakartaee-api</artifactId>
 			<version>8.0.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
 			<scope>provided</scope>
 		</dependency>		
 	</dependencies>
@@ -47,12 +53,6 @@
 				<version>3.2.3</version> <!-- Versão anterior com alta compatibilidade -->
 				<configuration>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
-					<packagingExcludes>
-						WEB-INF/lib/weld-*.jar,
-						WEB-INF/lib/cdi-api-*.jar,
-						WEB-INF/lib/jakarta.transaction-api-*.jar,
-						WEB-INF/lib/jakarta.activation-api-*.jar
-					</packagingExcludes>
 					<archive>
 						<manifestEntries>
 							<Add-Opens>java.base/java.lang</Add-Opens>
