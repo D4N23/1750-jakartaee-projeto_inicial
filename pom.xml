@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.teste</groupId>
 	<artifactId>agendamentoemail</artifactId>
-	<version>0.0.5</version>
+	<version>0.0.6</version>
 	<packaging>war</packaging>
 	<name>Agendamento de e-mails</name>
 	<description>Projeto teste em EJB </description>

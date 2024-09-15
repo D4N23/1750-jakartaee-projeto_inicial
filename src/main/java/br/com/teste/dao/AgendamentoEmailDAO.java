@@ -17,22 +17,35 @@ public class AgendamentoEmailDAO {
     private EntityManager entityManager;
 
     // public AgendamentoEmailDAO() {
-    //     EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("AgendamentoEmailDS");
-    //     this.entityManager = entityManagerFactory.createEntityManager();
+    // EntityManagerFactory entityManagerFactory =
+    // Persistence.createEntityManagerFactory("AgendamentoEmailDS");
+    // this.entityManager = entityManagerFactory.createEntityManager();
     // }
 
     public List<AgendamentoEmail> listar() {
-        String sqlString = "SELECT ae FROM AgendamentoEmail ae";
+        String query = "SELECT ae FROM AgendamentoEmail ae";
         // entityManager.getTransaction().begin();
-        // List<AgendamentoEmail> resultado = entityManager.createQuery(sqlString, AgendamentoEmail.class).getResultList();
+        // List<AgendamentoEmail> resultado = entityManager.createQuery(sqlString,
+        // AgendamentoEmail.class).getResultList();
         // entityManager.getTransaction().commit();
         // entityManager.close();
         // return resultado;
-        return entityManager.createQuery(sqlString, AgendamentoEmail.class).getResultList();
+        return entityManager.createQuery(query, AgendamentoEmail.class).getResultList();
     }
 
-    public void inserir(AgendamentoEmail agendamentoEmail){
+    public void inserir(AgendamentoEmail agendamentoEmail) {
         entityManager.persist(agendamentoEmail);
+    }
+
+    public List<AgendamentoEmail> listarNaoAgendados() {
+        String query = "SELECT ae FROM AgendamentoEmail ae WHERE.agendado = false";
+        return entityManager
+                .createQuery(query, AgendamentoEmail.class)
+                .getResultList();
+    }
+
+    public void alterar(AgendamentoEmail agendamentoEmail){
+        entityManager.merge(agendamentoEmail);
     }
 
 }
