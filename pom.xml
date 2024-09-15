@@ -12,19 +12,18 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven.compiler.source>17</maven.compiler.source>
-		<maven.compiler.target>17</maven.compiler.target>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
-		<jakarta.jakartaee-api.version>9.1.0</jakarta.jakartaee-api.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>jakarta.platform</groupId>
 			<artifactId>jakarta.jakartaee-api</artifactId>
-			<version>${jakarta.jakartaee-api.version}</version>
+			<version>8.0.0</version>
 			<scope>provided</scope>
-		</dependency>
+		</dependency>		
 	</dependencies>
 
 	<build>
@@ -32,19 +31,20 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.10.1</version>
+				<version>3.8.1</version> <!-- Versão estável compatível com Java 11 -->
 				<configuration>
-					<release>17</release>
+					<release>11</release>
 					<compilerArgs>
 						<arg>--add-opens</arg>
 						<arg>java.base/java.lang=ALL-UNNAMED</arg>
 					</compilerArgs>
 				</configuration>
 			</plugin>
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>3.3.2</version>
+				<version>3.2.3</version> <!-- Versão anterior com alta compatibilidade -->
 				<configuration>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 					<packagingExcludes>
@@ -59,7 +59,7 @@
 						</manifestEntries>
 					</archive>
 				</configuration>
-			</plugin>
+			</plugin>			
 		</plugins>
 	</build>
 </project>

@@ -4,8 +4,8 @@ import java.util.List;
 
 import br.com.teste.dao.AgendamentoEmailDAO;
 import br.com.teste.entity.AgendamentoEmail;
-import jakarta.ejb.Stateless;
-import jakarta.inject.Inject;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 @Stateless
 public class AgendamentoEmailServico {
     
