@@ -17,7 +17,7 @@ import br.com.teste.servico.AgendamentoEmailServico;
 import java.util.List;
 
 @Singleton
-@TransactionManagement(TransactionManagementType.CONTAINER) //adicionando o contexto de transações CMT
+@TransactionManagement(TransactionManagementType.CONTAINER) //adicionando o transações CMT e explicitando  o controle das transações no servidor de aplicação
 public class AgendamentoEmailsJob {
     
     // private static AgendamentoEmailsJob instance;

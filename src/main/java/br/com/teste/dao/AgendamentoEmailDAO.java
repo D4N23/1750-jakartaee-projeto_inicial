@@ -1,20 +1,28 @@
 package br.com.teste.dao;
 
 import javax.ejb.Stateless;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 
 import java.util.List;
 
 import br.com.teste.entity.AgendamentoEmail;
 
 @Stateless
+@TransactionManagement(TransactionManagementType.BEAN) //Passando o controle das transações para a aplicação  BMT
 public class AgendamentoEmailDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
+
+    @Inject
+    private UserTransaction userTransaction;
 
     // public AgendamentoEmailDAO() {
     // EntityManagerFactory entityManagerFactory =
@@ -34,7 +42,13 @@ public class AgendamentoEmailDAO {
     }
 
     public void inserir(AgendamentoEmail agendamentoEmail) {
-        entityManager.persist(agendamentoEmail);
+        try {
+            userTransaction.begin();
+            entityManager.persist(agendamentoEmail);
+            userTransaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public List<AgendamentoEmail> listarNaoAgendados() {
@@ -45,7 +59,14 @@ public class AgendamentoEmailDAO {
     }
 
     public void alterar(AgendamentoEmail agendamentoEmail){
-        entityManager.merge(agendamentoEmail);
+
+        try {
+            userTransaction.begin();
+            entityManager.merge(agendamentoEmail);
+            userTransaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
