@@ -3,6 +3,10 @@ package br.com.teste.jobs;
 import javax.annotation.Resource;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.inject.Inject;
 import javax.jms.JMSConnectionFactory;
 import javax.jms.JMSContext;
@@ -13,6 +17,7 @@ import br.com.teste.servico.AgendamentoEmailServico;
 import java.util.List;
 
 @Singleton
+@TransactionManagement(TransactionManagementType.CONTAINER) //adicionando o contexto de transações CMT
 public class AgendamentoEmailsJob {
     
     // private static AgendamentoEmailsJob instance;
@@ -36,6 +41,7 @@ public class AgendamentoEmailsJob {
     private Queue queue;
     
     @Schedule(hour = "*", minute = "*", second = "*/10")
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void enviarEmail(){
         List<AgendamentoEmail> listarNaoAgendado = agendamentoEmailServico.listarNaoAgendado();
           listarNaoAgendado.forEach( emailNaoAgendado -> {
